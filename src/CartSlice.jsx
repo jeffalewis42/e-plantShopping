@@ -10,12 +10,12 @@ export const CartSlice = createSlice({
         console.log("In carslice.jsx");
         const { name, image, cost } = action.payload;
         console.log(name);
-        const existingItem = cart.items.find(item => item.name === name);
+        const existingItem = state.items.find(item => item.name === name);
         
         if (existingItem) {
           existingItem.quantity++;
         } else {
-          cart.items.push({ name, image, cost, quantity: 1 });
+          state.items.push({ name, image, cost, quantity: 1 });
         }
       },
     removeItem: (state, action) => {
