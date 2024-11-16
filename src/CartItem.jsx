@@ -9,13 +9,22 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
-  };
+    let totalCost = 0;
+    items.forEach((item) => {
+        totalCost += item.cost * item.quantity;
+    });
+    
+    return totalCost;
+    }
+    const handleContinueShopping = (e) => {
+        e.preventDefault();
+        setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+        setShowCart(false); // Hide the cart when navigating to About Us
+      };
 
-  const handleContinueShopping = (e) => {
-   
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
   };
-
 
 
   const handleIncrement = (item) => {
@@ -57,7 +66,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
