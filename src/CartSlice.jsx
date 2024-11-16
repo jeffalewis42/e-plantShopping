@@ -7,13 +7,15 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
+        console.log("In carslice.jsx");
         const { name, image, cost } = action.payload;
-        console.log({ name, image, cost });
-        const existingItem = state.items.find(item => item.name === name);
+        console.log(name);
+        const existingItem = cart.items.find(item => item.name === name);
+        
         if (existingItem) {
           existingItem.quantity++;
         } else {
-          state.items.push({ name, image, cost, quantity: 1 });
+          cart.items.push({ name, image, cost, quantity: 1 });
         }
       },
     removeItem: (state, action) => {
@@ -30,6 +32,6 @@ export const CartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
+export const { addItem, removeItem, updateQuantity } = CartSlice.actions
 
-export default CartSlice.reducer;
+export default CartSlice.reducer
