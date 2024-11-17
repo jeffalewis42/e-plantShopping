@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+//import { setShowCart, setShowPlants } from './ProductList';
 import { removeItem, updateQuantity } from './CartSlice';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -22,10 +22,8 @@ const CartItem = ({ onContinueShopping }) => {
     return totalCost;
     }
     const handleContinueShopping = (e) => {
-        e.preventDefault();
-        //setShowPlants(true); //Set showAboutUs to true when "About Us" link is clicked
-        e.setShowCart(false); // Hide the cart when navigating to About Us
-      };
+        return onContinueShopping(e);
+    };
 
   const handleCheckoutShopping = (e) => {
     alert('Functionality to be added for future reference');
