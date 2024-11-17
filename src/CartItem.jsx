@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './CartItem.css';
-//import { setShowCart, setShowPlants } from './ProductList';
 import { removeItem, updateQuantity } from './CartSlice';
 
 const CartItem = ({ onContinueShopping }) => {
