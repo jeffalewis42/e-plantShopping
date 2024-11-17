@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 //import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
+import { removeItem, updateQuantity } from './CartSlice';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
@@ -23,7 +24,7 @@ const CartItem = ({ onContinueShopping }) => {
     const handleContinueShopping = (e) => {
         e.preventDefault();
         //setShowPlants(true); //Set showAboutUs to true when "About Us" link is clicked
-        setShowCart(false); // Hide the cart when navigating to About Us
+        e.setShowCart(false); // Hide the cart when navigating to About Us
       };
 
   const handleCheckoutShopping = (e) => {
@@ -32,17 +33,40 @@ const CartItem = ({ onContinueShopping }) => {
 
 
   const handleIncrement = (item) => {
+    console.log (item.quantity);
+    let quantity = item.quantity;
+    console.log (quantity);
+    quantity++;
+    const name = item.name;
+    console.log ("updated quantity for " + name + ":" + quantity);
+    dispatch (updateQuantity({name , quantity}));
+    return;
   };
 
   const handleDecrement = (item) => {
-   
+    let quantity = item.quantity;    
+    const name = item.name;
+    if (quantity == 1){
+        console.log("remove "+name);
+        dispatch(removeItem(name));
+    }
+    else {
+    quantity--;
+    console.log ("updated quantity for " + name + ":" + quantity);
+    dispatch (updateQuantity({name , quantity}));}
+    return;
   };
 
   const handleRemove = (item) => {
+    const name = item.name;
+    console.log("remove "+name);
+    dispatch(removeItem(name));
+    return;
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return parseInt(item.cost.substring(1)) * item.quantity;
   };
 
   return (
